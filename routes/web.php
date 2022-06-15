@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \Illuminate\Support\Facades\Mail;
+use \App\Mail\SendTestMail;
+use \App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 });
 
-Route::get('/email', function () {
-    return view('email');
-});
 
 Auth::routes();
 
