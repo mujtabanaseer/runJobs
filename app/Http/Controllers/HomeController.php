@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use \App\Jobs\SendEmailJob;
 
@@ -24,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $users = User::all();
+        $user = $users->find(1);
         //----- send email without jobs -----------
 
 //        Mail::to("mujtabanaseer.pakistan@gmail.com")
@@ -31,7 +34,7 @@ class HomeController extends Controller
 
         //---- send email with jobs ----------
 
-        SendEmailJob::dispatch()->delay(now()->addSeconds(10));
+        SendEmailJob::dispatch($user)->delay(now()->addSeconds(10));
 
         return view('home');
     }
